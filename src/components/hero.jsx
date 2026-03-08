@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import Typewriter from "typewriter-effect"
+import { TypeAnimation } from "react-type-animation"
 import { Mail } from "lucide-react"
 
 const PROPS_LIST = [1, 2, 3, 4, 5, 6, 7]
@@ -93,7 +93,7 @@ const Hero = () => {
         <div className="flex-1 space-y-6 order-1 lg:order-2 text-center lg:text-left z-10">
           <div className="space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-fg flex flex-wrap justify-center lg:justify-start gap-x-2">
-              <span>Hi, I'm Liliana.</span>
+              <span>Hi, I'm </span>
               <span className="text-accent-cyan min-w-[120px] md:min-w-[180px]">
                 {/* <Typewriter
                   options={{
@@ -109,6 +109,23 @@ const Hero = () => {
                     cursor: "|"
                   }}
                 /> */}
+                <TypeAnimation
+                  sequence={[
+                    "Liliana.",
+                    2000,
+                    "a developer.",
+                    2000,
+                    "a creator.",
+                    2000,
+                    "a mentor.",
+                    2000
+                  ]}
+                  wrapper="span"
+                  speed={50}
+                  deletionSpeed={50}
+                  repeat={Infinity}
+                  cursor={true}
+                />
               </span>
             </h1>
 
