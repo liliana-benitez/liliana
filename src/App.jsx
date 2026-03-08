@@ -1,9 +1,9 @@
 import React from "react"
-import Navbar from "./components/temp-navbar.jsx"
-import Hero from "./components/temp-hero.jsx"
-import About from "./components/temp-about.jsx"
-import Experience from "./components/temp-expeerience.jsx"
-import Projects from "./components/temp-projects.jsx"
+import Navbar from "./components/navbar.jsx"
+import Hero from "./components/hero.jsx"
+import About from "./components/about.jsx"
+import Experience from "./components/experience.jsx"
+import Projects from "./components/projects.jsx"
 
 function App() {
   return (
