@@ -93,9 +93,9 @@ const Hero = () => {
         <div className="flex-1 space-y-6 order-1 lg:order-2 text-center lg:text-left z-10">
           <div className="space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-fg flex flex-wrap justify-center lg:justify-start gap-x-2">
-              <span>Hi, I'm</span>
+              <span>Hi, I'm Liliana.</span>
               <span className="text-accent-cyan min-w-[120px] md:min-w-[180px]">
-                <Typewriter
+                {/* <Typewriter
                   options={{
                     strings: [
                       "Liliana.",
@@ -108,7 +108,7 @@ const Hero = () => {
                     deleteSpeed: 50,
                     cursor: "|"
                   }}
-                />
+                /> */}
               </span>
             </h1>
 
