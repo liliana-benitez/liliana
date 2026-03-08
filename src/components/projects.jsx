@@ -52,8 +52,11 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-24 px-6 lg:px-24">
-      <div className="max-w-6xl mx-auto">
+    <section
+      id="projects"
+      className="min-h-screen flex flex-col justify-center py-24 px-6 lg:px-24"
+    >
+      <div className="max-w-4xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -113,7 +116,7 @@ const ProjectCard = ({ project, index }) => {
       <h3 className="text-xl font-bold text-fg mb-3 group-hover:text-accent-cyan transition-colors">
         {project.title}
       </h3>
-      <p className="text-sm text-fg-muted leading-relaxed mb-8 grow">
+      <p className="text-base text-fg-muted leading-relaxed mb-8 grow">
         {project.description}
       </p>
 

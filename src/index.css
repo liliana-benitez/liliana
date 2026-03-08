@@ -37,6 +37,10 @@ body {
   background-color: var(--color-bg);
 }
 
+html {
+  scroll-padding-top: 5rem;
+}
+
 * {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -79,6 +83,10 @@ body {
   50% {
     opacity: 0;
   }
+}
+
+.Typewriter__cursor {
+  color: var(--color-accent-purple);
 }
 
 .cursor-blink {

@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs"
 
 const jobs = [
   {
@@ -33,6 +34,17 @@ const jobs = [
       "Implemented server-side rendering (SSR) with Next.js to achieve sub-1-second page loads and improve SEO performance.",
       "Built responsive, accessible UI using React and Tailwind CSS to deliver seamless user experience across devices."
     ]
+  },
+  {
+    id: "exp4",
+    company: "Roomate",
+    role: "Software Engineer",
+    period: "JAN 2021 - DEC 2022",
+    description: [
+      "Contributed as a core developer to the RooMate application - a platform designed to streamline shared living for roommates.",
+      "Built and maintained features across a Vite-powered React frontend and an Express backend, delivering performant and scalable solutions.",
+      "Implemented custom React hooks to promote reusable logic and experimented with a variety of libraries to enhance functionality and user experience."
+    ]
   }
 ]
 
@@ -40,72 +52,102 @@ const Experience = () => {
   const [activeTab, setActiveTab] = useState(0)
 
   return (
-    <section id="experience" className="py-24 px-6 lg:px-24 bg-bg-dark/30">
-      <div className="max-w-4xl mx-auto">
+    <section
+      id="experience"
+      className="min-h-screen flex flex-col justify-center py-24 px-6 lg:px-24"
+    >
+      <div className="max-w-4xl mx-auto w-full">
         <motion.h2
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           className="text-2xl md:text-3xl font-bold text-fg mb-12 flex items-center"
         >
-          {/* <span className="text-accent-purple font-mono mr-2">02.</span> */}
           Experience
           <div className="h-px bg-border grow ml-6 text-accent-purple" />
         </motion.h2>
 
-        {/* Parent Flex Container */}
-        <div className="flex flex-col md:flex-row gap-4 md:gap-12 min-h-[400px]">
+        <Tabs
+          defaultValue="exp1"
+          orientation="vertical"
+          className="flex flex-col md:flex-row gap-8 md:gap-16 min-h-[400px]"
+          onValueChange={(value) => {
+            const index = jobs.findIndex((j) => j.id === value)
+            setActiveTab(index)
+          }}
+        >
           {/* Sidebar Tabs Container */}
-          <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible shrink-0 w-full md:w-48 border-l-2 md:border-l border-border/50 no-scrollbar">
-            {jobs.map((job, idx) => (
-              <button
+          <TabsList className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible shrink-0 w-full md:w-48 relative border-b md:border-b-0 md:border-r border-border/20 no-scrollbar bg-transparent items-center md:items-start h-auto md:h-full">
+            {/* Sliding Active Indicator (Desktop only) */}
+            <motion.div
+              className="absolute right-0 w-0.5 bg-accent-purple hidden md:block"
+              initial={false}
+              animate={{
+                top: `${activeTab * 48 + 8}px`,
+                height: "32px"
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 30
+              }}
+            />
+            {jobs.map((job) => (
+              <TabsTrigger
                 key={job.id}
-                onClick={() => setActiveTab(idx)}
-                className={`flex-1 md:flex-none text-left px-4 py-3 font-mono text-sm transition-all relative border-l-2 ${
-                  activeTab === idx
-                    ? "text-accent-cyan border-accent-cyan bg-accent-cyan/10"
-                    : "text-fg-muted border-transparent hover:text-fg hover:bg-bg-dark"
-                }`}
+                value={job.id}
+                className={`flex-none text-center md:text-left px-6 md:px-4 h-12 transition-all relative w-auto md:w-full justify-center md:justify-start data-[state=active]:text-accent-purple data-[state=active]:bg-accent-purple/5 text-fg-muted hover:text-fg hover:bg-white/5 border-none after:h-0.5 after:bg-accent-purple after:absolute after:bottom-0 after:left-0 after:right-0 after:opacity-0 data-[state=active]:after:opacity-100 md:after:hidden`}
               >
-                {job.company}
-              </button>
+                <span className="text-xs font-bold uppercase tracking-widest text-inherit">
+                  {job.company}
+                </span>
+              </TabsTrigger>
             ))}
-          </div>
+          </TabsList>
 
           {/* Job Details Content */}
           <div className="grow py-2">
             <AnimatePresence mode="wait">
-              <motion.div
-                key={jobs[activeTab].id}
-                initial={{ opacity: 0, x: 10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -10 }}
-                transition={{ duration: 0.2 }}
-              >
-                <h3 className="text-xl font-bold text-fg mb-1">
-                  {jobs[activeTab].role}{" "}
-                  <span className="text-accent-cyan">
-                    @ {jobs[activeTab].company}
-                  </span>
-                </h3>
-                <p className="font-mono text-xs text-fg-muted mb-6">
-                  {jobs[activeTab].period}
-                </p>
-                <ul className="space-y-4">
-                  {jobs[activeTab].description.map((item, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start text-sm text-fg-muted leading-relaxed"
-                    >
-                      <span className="text-accent-purple mr-3 mt-1.5">▹</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+              {jobs.map((job, idx) => (
+                <TabsContent
+                  key={job.id}
+                  value={job.id}
+                  className="mt-0 outline-none"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <h3 className="text-xl md:text-2xl font-bold text-fg mb-1">
+                      {job.role}{" "}
+                      <span className="text-accent-purple">
+                        @ {job.company}
+                      </span>
+                    </h3>
+                    <p className="font-mono text-xs text-fg-muted mb-8 tracking-wide">
+                      {job.period}
+                    </p>
+                    <ul className="space-y-6">
+                      {job.description.map((item, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start text-base text-fg-muted leading-relaxed"
+                        >
+                          <span className="text-accent-purple mr-4 mt-1.5 text-[10px]">
+                            ▸
+                          </span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </TabsContent>
+              ))}
             </AnimatePresence>
           </div>
-        </div>
+        </Tabs>
       </div>
     </section>
   )
