@@ -1,9 +1,9 @@
 import React from "react"
-import Navbar from "./components/Navbar"
-import Hero from "./components/Hero"
+import Navbar from "./components/navbar"
+import Hero from "./components/hero"
 import About from "./components/about"
-import Experience from "./components/Experience"
-import Projects from "./components/Projects"
+import Experience from "./components/experience"
+import Projects from "./components/projects"
 
 function App() {
   return (

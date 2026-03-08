@@ -76,9 +76,7 @@ const Experience = () => {
             setActiveTab(index)
           }}
         >
-          {/* Sidebar Tabs Container */}
           <TabsList className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible shrink-0 w-full md:w-48 relative border-b md:border-b-0 md:border-r border-border/20 no-scrollbar bg-transparent items-center md:items-start h-auto md:h-full">
-            {/* Sliding Active Indicator (Desktop only) */}
             <motion.div
               className="absolute right-0 w-0.5 bg-accent-purple hidden md:block"
               initial={false}
@@ -105,7 +103,6 @@ const Experience = () => {
             ))}
           </TabsList>
 
-          {/* Job Details Content */}
           <div className="grow py-2">
             <AnimatePresence mode="wait">
               {jobs.map((job, idx) => (

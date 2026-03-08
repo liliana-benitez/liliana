@@ -88,10 +88,6 @@ export default function About() {
                 />
                 <div className="absolute inset-0 bg-accent-purple/10 group-hover:bg-transparent transition-colors duration-500" />
               </div>
-
-              {/* Decorative Corner Glow */}
-              <div className="absolute -top-2 -left-2 w-8 h-8 border-t border-l border-accent-blue rounded-tl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b border-r border-accent-blue rounded-br-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
           </div>
         </div>

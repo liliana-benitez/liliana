@@ -22,9 +22,8 @@ const Navbar = () => {
     setIsOpen(false)
 
     if (elem) {
-      // Small timeout to allow the menu closing state to settle
       setTimeout(() => {
-        const offset = 80 // Navbar height
+        const offset = 80 // navbar height
         const elementPosition = elem.getBoundingClientRect().top
         const offsetPosition = elementPosition + window.pageYOffset - offset
 
@@ -35,7 +34,6 @@ const Navbar = () => {
       }, 10)
     }
 
-    // Update URL hash without jumping
     window.history.pushState(null, "", href)
   }
 
@@ -66,7 +64,7 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Social Icons (Desktop) */}
+        {/* socials */}
         <div className="hidden md:flex items-center space-x-6">
           <SocialIcon
             icon={<Mail size={18} />}
@@ -82,7 +80,7 @@ const Navbar = () => {
           />
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* hamburger */}
         <button
           className="md:hidden text-fg p-2 hover:bg-white/5 rounded-lg transition-colors"
           onClick={toggleMenu}
@@ -92,7 +90,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
