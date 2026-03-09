@@ -45,7 +45,7 @@ const Hero = () => {
         {/* Avatar */}
         <div
           ref={containerRef}
-          className="flex-1 relative w-full max-w-[400px] aspect-square flex items-center justify-center order-2 lg:order-1"
+          className="flex-1 relative w-full max-w-100 aspect-square flex items-center justify-center order-2 lg:order-1"
         >
           {/* middle avatar */}
           <div
