@@ -1,14 +1,40 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
 import { Mail } from "lucide-react"
 
 const PROPS_LIST = [1, 2, 3, 4, 5, 6, 7]
-const CIRCLE_RADIUS = 190
 
 const Hero = () => {
   const [activeId, setActiveId] = useState(1)
+  const [circleRadius, setCircleRadius] = useState(190)
+  const [propSize, setPropSize] = useState(70)
   const avatarRef = useRef(null)
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    const updateRadius = () => {
+      const vw = window.innerWidth
+
+      if (vw < 400) {
+        setCircleRadius(160)
+        setPropSize(60)
+      } else if (vw < 640) {
+        setCircleRadius(190)
+        setPropSize(70)
+      } else if (vw < 1024) {
+        setCircleRadius(190)
+        setPropSize(70)
+      } else {
+        setCircleRadius(190)
+        setPropSize(70)
+      }
+    }
+
+    updateRadius()
+    window.addEventListener("resize", updateRadius)
+    return () => window.removeEventListener("resize", updateRadius)
+  }, [])
 
   return (
     <section
@@ -17,8 +43,11 @@ const Hero = () => {
     >
       <div className="max-w-4xl mx-auto w-full flex flex-col lg:flex-row items-center justify-center gap-24">
         {/* Avatar */}
-        <div className="flex-1 relative w-full max-w-[400px] aspect-square flex items-center justify-center order-2 lg:order-1">
-          {/* middle */}
+        <div
+          ref={containerRef}
+          className="flex-1 relative w-full max-w-[400px] aspect-square flex items-center justify-center order-2 lg:order-1"
+        >
+          {/* middle avatar */}
           <div
             ref={avatarRef}
             className="relative z-10 w-[70%] aspect-square flex items-center justify-center pointer-events-none"
@@ -41,8 +70,8 @@ const Hero = () => {
           <div className="absolute inset-0 pointer-events-none">
             {PROPS_LIST.map((id, index) => {
               const angle = index * (360 / PROPS_LIST.length) * (Math.PI / 180)
-              const x = Math.cos(angle) * CIRCLE_RADIUS
-              const y = Math.sin(angle) * CIRCLE_RADIUS
+              const x = Math.cos(angle) * circleRadius
+              const y = Math.sin(angle) * circleRadius
 
               return (
                 <div
@@ -52,8 +81,8 @@ const Hero = () => {
                     left: "50%",
                     top: "50%",
                     transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
-                    width: "70px", // Reduced
-                    height: "70px", // Reduced
+                    width: `${propSize}px`,
+                    height: `${propSize}px`,
                     zIndex: 20
                   }}
                 >
@@ -95,20 +124,6 @@ const Hero = () => {
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-fg flex flex-wrap justify-center lg:justify-start gap-x-2">
               <span>Hi, I'm </span>
               <span className="text-accent-cyan min-w-[120px] md:min-w-[180px]">
-                {/* <Typewriter
-                  options={{
-                    strings: [
-                      "Liliana.",
-                      "a developer.",
-                      "a creator.",
-                      "a mentor."
-                    ],
-                    autoStart: true,
-                    loop: true,
-                    deleteSpeed: 50,
-                    cursor: "|"
-                  }}
-                /> */}
                 <TypeAnimation
                   sequence={[
                     "Liliana.",
