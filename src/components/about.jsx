@@ -30,8 +30,8 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
           <div className="lg:col-span-3 space-y-6 text-fg/80 leading-relaxed text-base">
             <p>
-              Hi, I’m a Canadian software engineer currently based in Barcelona,
-              Spain. By day I'm mentoring the next generation of developers and
+              Hi, I’m a Canadian software engineer based in Toronto,
+              Ontario. By day I'm mentoring the next generation of developers and
               contributing to a custom LMS at{" "}
               <a
                 href="https://www.arol.dev/"
